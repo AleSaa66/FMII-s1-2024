@@ -1,0 +1,129 @@
+\chapter{Ecuaciones diferenciales parciales}
+
+\section{Introducción}
+
+En diversas áreas de la Física es común encontrar ecuaciones diferenciales parciales (EDP's), entre las más frecuentes pueden ser mencionadas las siguientes:
+
+\begin{enumerate}
+    \item La \textbf{ecuación de Laplace}:
+    \begin{equation}
+            \nabla^2 \Psi = 0. \label{EcLaplace}
+    \end{equation}
+    
+    Esta ecuación aparece, por ejemplo, en el estudio de:
+    
+    \begin{itemize}
+        \item Electrostática. El potencial eléctrico $\phi$ en una región sin cargas satisface la ecuación de Laplace.
+        
+        \item Hidrodinámica. Un fluido irrotacional incomprensible en un movimiento estacionario con campo de velocidad $\Vec{v} = - \Vec{\nabla} \Psi$ satisface
+        \begin{equation}
+          \frac{\partial \rho}{\partial t} + \Vec{\nabla}(p \Vec{v}) = 0 \quad \Rightarrow \quad \Vec{\nabla} \cdot \Vec{v} = - \nabla^2 \Psi = 0.  
+        \end{equation}
+        
+        \item Gravitación. Análogo al caso electrostático, con $\Psi = \phi = $ potencial gravitacional.
+    \end{itemize}
+    
+    \item La \textbf{ecuación de Poisson}:
+        \begin{equation}
+            \nabla^2 \Psi = g(\Vec{x}), \label{EcPoisson}
+    \end{equation}
+    donde $g(\Vec{x})$ es una función 'fuente' conocida. Esta EDP es \textit{inhomogénea}, y por tanto sus soluciones pueden escribirse como $\Psi = \Psi_h + \Psi_p$, donde $\Psi_h$ es solución de la ecuación homogénea asociada (en este caso, de la ec. de Laplace) y $\Psi_p$ una solución particular de la ec. de Poisson.
+    
+    Por ejemplo, el potencial electrostático $\phi(\Vec{x})$ satisface
+    \begin{equation}
+      \nabla^2 \phi = - \frac{1}{\varepsilon_0} \rho(\Vec{x}),  
+    \end{equation}
+    donde $\varepsilon_0$ es la permeabilidad del vacío y $\rho(\Vec{x})$ la densidad (volumétrica) de carga eléctrica.
+    
+    \item La \textbf{ecuación de Helmholtz}:
+         \begin{equation}
+            \nabla^2 \Psi \pm k^2 \Psi = 0. \label{EcHelmholtz}
+    \end{equation}
+
+    Esta ecuación, conocida también como la ecuación de difusión independiente del tiempo, aparece en el estudio de 
+    
+    \begin{itemize}
+        \item Ondas elásticas en sólidos.
+        \item Acústica.
+        \item Ondas electromagnéticas (electrodinámica).
+        \item Reactores nucleares.
+    \end{itemize}
+    
+    \item La \textbf{ecuación de difusión del calor dependiente del tiempo} :
+     \begin{equation}
+            \nabla^2 \Psi - \frac{1}{\alpha} \frac{\partial \Psi}{\partial t} = 0, \label{EcCalor}
+    \end{equation}
+    donde $\alpha$ es la difusividad térmica. Si $c_p$ es la capacidad calorífica del material, $\rho$ su densidad de masa y $k$ su conductividad térmica, entonces $\alpha = k/\rho c_p$.
+    
+     \item La \textbf{ecuación de onda  dependiente del tiempo} :
+     \begin{equation}
+            \nabla^2 \Psi - \frac{1}{v^2} \frac{\partial^2 \Psi}{\partial^2 t} = 0, \label{EcOnda1}
+    \end{equation}
+    o bien 
+     \begin{equation}
+        \square \Psi = 0, \qquad \square := \frac{1}{v^2} \frac{\partial^2}{\partial t^2} - \nabla^2.     \label{EcOnda2}
+    \end{equation}
+    
+    Esta EDP aparece en modelos de:
+    
+    \begin{itemize}
+        \item Ondas elásticas en sólidos, membranas, cuerdas, etc.
+        \item Ondas electromagnéticas en regiones sin fuentes.
+        
+    \item Ondas sonoras.
+    \end{itemize}
+    
+    \item La \textbf{ecuación de Klein-Gordon}:
+    \begin{equation}
+        \square \Psi - \frac{m^2 c^2}{\hbar^2} \Psi = 0.    \label{EcKlein}
+    \end{equation}
+    
+      \item La \textbf{ecuación de Schrödinger}:
+         \begin{equation}
+       - \frac{\hbar^2}{2m} \nabla^2 \Psi + V(\Vec{x}) \Psi = i \hbar \frac{\partial \Psi}{\partial t}.    \label{EcSchrödinger}
+    \end{equation}
+    
+    \newpage
+    \item Las \textbf{ecuaciones de Maxwell}:
+    \begin{align}
+        \Vec{\nabla} \cdot \Vec{E} &= \frac{\rho}{\varepsilon_0}, \\
+        \Vec{\nabla} \cdot \Vec{B} &= 0, \\
+        \Vec{\nabla} \times \Vec{E} &= - \frac{\partial \Vec{B}}{\partial t}, \\
+         \Vec{\nabla} \times \Vec{B} &= \mu_0 \Vec{J} + \mu_0 \varepsilon_0 \frac{\partial \Vec{E}}{\partial t}.
+    \end{align}
+    \end{enumerate}
+    
+    \textbf{Observaciones}:
+    
+    \begin{itemize}
+        \item[(a)] Todas las ecuaciones son lineales en la función desconocida $\Psi$.
+        
+        \item[(b)] Las ecuaciones de la Física atmosférica son no lineales, también las ecuaciones involucradas en los problemas de turbulencia.
+        
+        \item[(c)] Casi todas son de segundo orden.
+    \end{itemize}
+    
+Las técnicas para resolver ecuaciones diferenciales parciales más utilizadas son: 
+
+\begin{itemize}
+    \item \textbf{Método de separación de variables}.
+    
+    \item \textbf{Método de las transformadas integrales} (Fourier, Laplace, etc).
+    
+    \item \textbf{Método de las funciones de Green}.
+\end{itemize}
+
+\section{Condiciones de borde}
+
+La solución de una EDP en un dominio dado $\Omega$ requiere especificar información adicional a la ecuación, en la frontera del dominio ($\partial \Omega$). Esta información recibe el nombre de \textbf{condiciones de borde}, o \textbf{condiciones de frontera}.
+
+En el caso de EDP's de segundo orden, existen tres tipos principales de condiciones de borde:
+\begin{enumerate}
+    \item \textbf{Dirichlet:} El valor de $\Psi$ está especificado en cada punto de (o en partes de) la frontera ($\partial \Omega$).
+    
+    \item \textbf{Neumann:} El valor de $\partial \Psi/\partial n$, la \textit{derivada normal} de $\Psi$, está especificada en cada punto de (o en partes de) la frontera ($\partial \Omega$). Note que $\partial \Psi/\partial n = \Vec{\nabla} \Psi \cdot \hat{n}$, donde $\hat{n}$ es el vector normal del borde en cada punto.
+    
+    \item \textbf{Cauchy:} Tanto $\Psi$ y $\partial \Psi/\partial n$ están especificados en cada punto de (o en partes de) la frontera ($\partial \Omega$).
+\end{enumerate}
+
+Dado un problema particular decidir cual condición de borde es apropiada puede ser complejo y no daremos esa discusión en este apunte. \footnote{Para una discusión detallada el lector puede referirse, por ejemplo, a P.M.  Morse y H. Feshbach, {\em Methods of Theoretical Physics, Part I} (New York: McGraw-Hill, 1953), capítulo 6.} Brevemente, la condición de borde apropiada depende del tipo de EDP de segundo orden y si el dominio de solución está acotado por una superficie abierta o cerrada (o una curva cerrado o abierta para el caso de dos variables independientes). Cabe destacar que la frontera cerrada puede estar en el infinito si las condiciones están impuestas en $\Psi$ o $\partial \Psi/\partial n$ allí.

@@ -1,0 +1,196 @@
+\documentclass[letterpaper,twoside,12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb,float, amsthm,mathrsfs}  
+\usepackage[right=4.5cm,left=2cm,top=3cm,bottom=3cm,headsep= 0.7cm,footskip=0.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{wrapfig} 
+\usepackage[rflt]{floatflt} 
+\usepackage{framed}
+%\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{shadecolor}{green!20}
+\setlength\FrameSep{0.5ex}
+\usepackage{thmtools}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{listings} 
+\usepackage{pstricks, caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{80}{70}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,babel}
+\usepackage[font=small]{caption}
+\usepackage{scalerel} %\scaleto{text}{size}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{marginnote}
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-14.49998pt}
+\setlength{\headsep}{15pt}
+\setlength{\footskip}{14.49998pt}
+\newcommand{\grad}{^\circ}
+\newlength{\drop}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\Log}{Log}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{pgfgantt}
+\decimalpoint
+
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+%%%%%%%%%%%%%%Rules%%%%%%%%%%%%%%%%%%%
+\newcommand{\myrule} [3] []{
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[#2-#3, ultra thick, #1] (0,0) to (0.93\linewidth,0);
+        \end{tikzpicture}
+    \end{center}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%Entornos: Teoremas, Defs,etc%%%%%%%
+\theoremstyle{definition}
+
+\newtheorem{defis}{Definiciones}[section]
+\newtheorem{corolario}{Corolario}[section] 
+
+\newtheorem{protoexample}{Ejemplo}[section]
+\newenvironment{ejemplo}
+   {\colorlet{shadecolor}{gray!8}\begin{shaded}\begin{protoexample}}
+   {\end{protoexample}\end{shaded}}
+
+\newtheorem*{protoproof}{Demostración}
+\newenvironment{demo}
+   {\colorlet{shadecolor}{blue!10}\begin{shaded}\begin{protoproof}}
+   {\end{protoproof} \end{shaded}}
+
+\newenvironment{Rdbleftbar}{%
+  \def\FrameCommand{\textcolor{red}{\vrule width0.6pt}\hspace{0.15em}\textcolor{red}{\vrule width0.6pt} \hspace{0.5em}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+
+ \newenvironment{Bdbleftbar}{%
+  \def\FrameCommand{\vrule width0.6pt\hspace{0.15em}\vrule width0.6pt \hspace{0.5em}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+
+\newenvironment{Gdbleftbar}{%
+  \def\FrameCommand{\textcolor{green}{\vrule width0.6pt}\hspace{0.15em}\textcolor{green}{\vrule width0.6pt} \hspace{0.5em}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+ {\endMakeFramed}
+ 
+% With parskip
+
+\usepackage[indent=0.6cm]{parskip}
+
+\declaretheorem[%
+name            =Teorema,%
+numberwithin=chapter,
+postheadhook    =\vspace*{\parskip} \begin{Rdbleftbar}\vspace*{-5pt},%
+prefoothook     =\vspace*{-1pt}\end{Rdbleftbar}%
+]{teorema}
+
+\declaretheorem[%
+name            =Definición,%
+numberwithin=section,
+postheadhook    =\vspace*{\parskip}\begin{Bdbleftbar}\vspace*{-5pt},%
+prefoothook     =\vspace*{-1pt}\end{Bdbleftbar}%
+]{defi}
+
+\declaretheorem[%
+name            = Proposición,%
+numberwithin=section,
+postheadhook    =\vspace*{\parskip}\begin{Gdbleftbar}\vspace*{-5pt},%
+prefoothook     =\vspace*{-1pt}\end{Gdbleftbar}%
+]{propo}  
+
+\declaretheorem[%
+name            = Lema,%
+numberwithin=section,
+postheadhook    =\vspace*{\parskip}\begin{Gdbleftbar}\vspace*{-5pt},%
+prefoothook     =\vspace*{-1pt}\end{Gdbleftbar}%
+]{lema}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[backend=biber, sorting=none]{biblatex}
+\addbibresource{Referencias.bib}
+
+%%%%%%%%%%%%Fancy Chapters%%%%%%%%%%%%%%%%%
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+%\usepackage[Lenny]{fncychap}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancypagestyle{mystyle}{
+
+\fancyhf{}
+\fancyhead[LE]{\nouppercase{\rightmark}}
+\fancyhead[RO]{\nouppercase{\leftmark}}
+\fancyfoot[LE,RO]{\hfill\thepage\hfill}
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+%\begin{figure}[H]
+    %\centering
+    %\includegraphics[scale = 0.25]{Figures/Logo-Udec.png}
+%\end{figure}
+
+ \drop=0.1\textheight
+    \centering
+    \vspace{0.5cm}
+    %{\large UNIVERSIDAD DE CONCEPCIÓN \\ FACULTAD DE CIENCIAS FÍSICAS Y MATEMÁTICAS\\ DEPARTAMENTO DE FÍSICA \par}
+    \vspace*{\baselineskip}
+    \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+    \rule{\textwidth}{0.4pt}\\[\baselineskip]
+    {\Huge \textbf{Física Matemática II}}
+     \\ [0.3\baselineskip]
+    \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+    \rule{\textwidth}{1.6pt}\\[\baselineskip]
+     {\bfseries \large 1° semestre 2024\par}
+     \vspace{1cm}
+    {\large Autor: Alejandro Saavedra San Martín \par}
+\vfill
+{\large Abril 2024 \par}
+\end{titlepage}
+
+\pagestyle{mystyle}
+
+\chapter*{Prefacio}
+
+
+\emph{Este documento ha sido escrito  por A. Saavedra como material de apoyo del curso Física Matemática II, del Departamento de Física de la Universidad de Concepción, dictado el primer semestre del año 2024 por la profesora Ivana Sebestova. En él encontrarán los ejercicios hechos en las ayudantías y resúmenes de la materia con las definiciones y convenciones adoptadas en clases.}
+
+\emph{Cualquier comentario o contribución al correo \textit{alsaavedra2019@udec.cl}.}
+
+\tableofcontents
+
+\input{./Cap-1.tex}
+\input{./Cap-2.tex}
+\input{./Apendice}
+
+\addcontentsline{toc}{chapter}{Referencias}
+\nocite{*} %Referencia todo, incluso lo que no está citado.
+\printbibliography[title={Referencias}]
+\end{document}
